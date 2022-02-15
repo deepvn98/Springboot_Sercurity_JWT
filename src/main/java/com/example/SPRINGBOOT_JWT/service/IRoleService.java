@@ -5,7 +5,7 @@ import com.example.SPRINGBOOT_JWT.model.RoleName;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-@Service
+
 public interface IRoleService {
     Optional<RoleApp> findByName(RoleName name);
 

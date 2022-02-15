@@ -15,7 +15,7 @@ public class JwtProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
     private String jwtSecret = "npsang.nguyen@gmail.vn";
     private int jwtExpiration = 86400;
-// Tạo Token
+// Tạo Token gọi qua login
     public String createToken(Authentication authentication){
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         return Jwts.builder().setSubject(userPrinciple.getUsername())
@@ -24,7 +24,7 @@ public class JwtProvider {
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
-// Kiểm tra Token có hợp lệ hay không
+// Kiểm tra Token có hợp lệ hay không? gọi qua class JwtTokenFilter
     public boolean validateToken(String token){
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
@@ -42,7 +42,7 @@ public class JwtProvider {
         }
         return false;
     }
-// Lấy username từ token đã có.
+// Lấy username từ token đã có. gọi qua class JwtTokenFilter
     public String getUerNameFromToken(String token){
         String userName = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
         return userName;

@@ -4,9 +4,10 @@ import com.example.SPRINGBOOT_JWT.model.UserApp;
 import com.example.SPRINGBOOT_JWT.repository.IUserAppRepository;
 import com.example.SPRINGBOOT_JWT.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class UserAppService implements IUserService {
     @Autowired
     IUserAppRepository userAppRepository;
